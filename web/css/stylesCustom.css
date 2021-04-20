@@ -1,0 +1,542 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+/*Estilos generales*/
+html,body,h1,h2,h3,h4,h5, label {
+   font-family: "Raleway", sans-serif;
+}
+select{
+    cursor:pointer;
+}
+.nb-input{
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width:60%;
+  margin: 10px;
+}
+.nb-input-white{
+      background: white !important;
+}
+.nb-input-number-sinFlechas::-webkit-inner-spin-button, 
+.nb-input-number-sinFlechas::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.input-number-sinFlechas { 
+    -moz-appearance:textfield; 
+}
+.nb-input-sinSize{
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 10px;
+}
+.nb-table-input{
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 10px;
+}
+.nb-inputCantidadTabla{
+    width:55px;
+}
+.nb-title-center{
+    font-weight:bold;
+    text-align:center;
+}
+.nb-title-left{
+    font-weight:bold;
+    text-align:left;
+}
+.margin-top20{
+    margin-top:20px;
+}
+.margin-left20{
+    margin-left:20px;
+}
+.margin-bottom-50{
+    margin-bottom:50px;
+}
+.espaciador{
+    position:absolute;
+    top:3vw;
+    width:100%;
+}
+/*Estilos generales*/
+/*Sidebar*/
+#mySidebar{
+    z-index:3;
+    width:300px;
+    position:relative;
+    top:70px;
+}
+#imgPerfil{
+    width:46px;
+}
+#myOverlay{
+    cursor:pointer;
+}
+#divBarraSuperior{
+    z-index:4;
+}
+/*Sidebar*/
+/*login.jsp*/
+.fondoLogin{
+    background-image:url("../resources/fondoLogin.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    
+}
+.loginContainer{
+    position:relative;
+    background-color:rgba(255,255,255,1);
+    width:350px;
+    height:600px;
+    border-radius:15px;
+    margin: 0 auto;
+    
+    /*Sombra*/
+    -webkit-box-shadow: 10px 7px 27px -9px rgba(0,0,0,0.82);
+    -moz-box-shadow: 10px 7px 27px -9px rgba(0,0,0,0.82);
+    box-shadow: 10px 7px 27px -9px rgba(0,0,0,0.82);
+}
+.logoLogin{
+    height:auto;
+    width:250px;
+    position: relative;
+    top:80px;
+    left:0;
+}
+.logoLoginContainer{
+    margin:0 auto;
+    text-align:center;
+    width:350px;
+    height:200px;
+    position:relative;
+}
+#idFormLogin{
+    position:absolute;
+    margin:0 auto;
+    top:210px;
+    width:100%;
+    margin-left:15px;
+}
+#txtbxUsuario, #txtbxPassword, #idFormLogin input[type="submit"]{
+    width:300px;
+    height:50px;
+    padding:5px;
+}
+#idFormLogin input[type="submit"]{
+    border-radius:5px;
+}
+/*login.jsp*/
+
+/*usuario_Alta.jsp*/
+.spanVerClave{
+    position:relative;
+    left:100px;
+}
+#spanPaises{
+    position:relative;
+    left:20px;
+}
+#selPaisesUsuario{
+    position:relative;
+    left:22px;
+}
+#txtbxUserUsuarioAlta{
+    position:relative;
+    left:36px;
+}
+#txtbxPasswordUsuarioAlta{
+    position:relative;
+    left:84px;
+}
+#txtbxNombreCompletoUsuarioAlta{
+    position:relative;
+    left:36px;
+}
+#selGenero{
+    position:relative;
+    left:112px;
+}
+#spanTiposUsuarios{
+    position:relative;
+    left:60px;
+}
+/*usuario_Alta.jsp*/
+/*usuario_Baja.jsp*/
+#txtbxUsuarioBaja{
+    position:relative;
+    left:91px;
+}
+/*usuario_Baja.jsp*/
+/*cliente_Alta.jsp*/
+#divPrincipal, #divSecundario{
+    margin-left:35px;
+}
+#txtbxNroDocumentoClienteAlta{
+    position:relative;
+    left:35px;
+}
+#txtbxNombreCompletoClienteAlta{
+    position:relative;
+    left:70px;
+}
+#txtbxEmailClienteAlta{
+    position:relative;
+    left:158px;
+}
+#txtbxTelefonoClienteAlta{
+    position:relative;
+    left:136px;
+}
+#selPaisesCliente{
+    position:relative;
+    left:57px;
+}
+#selTiposDocumentoClienteAlta{
+    position:relative;
+    left:62px;
+}
+#txtbxUsuarioSistemaClienteAlta{
+    position:relative;
+    left:87px;
+}
+/*cliente_Alta.jsp*/
+
+/*cliente_Baja.jsp*/
+#txtbNroClienteBaja{
+    position:relative;
+    left:35px;
+}
+#txtbEmailClienteBaja{
+    position:relative;
+    left:125px
+}
+#txtbNombreCompletoBajaCli{
+    position:relative;
+    left:15px;
+}
+/*cliente_Baja.jsp*/
+
+/*paquete_Alta.jsp*/
+#txtbxNombrePaqueteAlta{
+    position:relative;
+    left:40px;
+}
+#txtbxCostoBrutoPaqueteAlta{
+    position:relative;
+    left:15px;
+}
+/*paquete_Alta.jsp*/
+
+/*dispositivo_Alta.jsp*/
+#spanContenidoClienteAsociado{
+    position:relative;
+    left:6px;
+}
+
+#selTipoDispositivoDispositivoAlta{
+    position: relative;
+    left:30px;
+}
+#selEstadoDispositivoAlta{
+    position:relative;
+    left:112px;
+}
+#txtbxNroSerieDispositivoAlta{
+    position:relative;
+    left:42px;
+}
+/*dispositivo_Alta.jsp*/
+
+/*dispositivo_Baja.jsp*/
+#txtbxNroSerieDispositivoBaja{
+    position:relative;
+    left:15px;
+}
+#selEstadoDispositivoBaja{
+    position:relative;
+    left:85px;
+}
+/*dispositivo_Baja.jsp*/
+
+/*suscripcion_Alta.jsp*/
+#spanContenidoClienteAsociadoB{
+    position:relative;
+    left:15px;
+}
+#selTiempoContrato{
+    position:relative;
+    left:77px;
+}
+#spanFechaInicio{
+    position:relative;
+    left:112px;
+}
+/*suscripcion_Alta.jsp*/
+/*paquete_Baja.jsp*/
+#txtbxCostoBrutoAPaqueteBaja, #txtbxCostoBrutoBPaqueteBaja{
+    position:relative;
+    left:15px;
+    width:150px;
+}
+#lblAndPaqueteBaja{
+    position:relative;
+    left:15px;
+    margin-right:15px;
+}
+#txtbxNombrePaqueteBaja{
+    position:relative;
+    left:82px;
+}
+#txtbxCostoBrutoAPaqueteBaja{
+    margin-right:15px;
+}
+#txtbxIdPaqueteBaja{
+    position:relative;
+    left:66px;
+}
+/*paquete_Baja.jsp*/
+/*suscripcion_Baja.jsp*/
+#txtbxIdSuscripcionBaja{
+    position:relative;
+    left:62px;
+}
+#spanFechasInicio{
+    position:relative;
+    left:15px;
+}
+#selTiempoContratoSuscripcionBaja{
+    position:relative;
+    left:22px;
+}
+#spanFechasFin{
+    position:relative;
+    left:36px;
+}
+#selActivaSuscripcionBaja{
+    position:relative;
+    left:107px;
+}
+/*suscripcion_Baja.jsp*/
+/*exportarPlanillas.jsp*/
+
+/*exportarPlanillas.jsp*/
+.borderDiv{
+    padding:5px;
+    border-style:solid;
+    border-color:black;
+    width:640px;
+    height:180px;
+}
+.estilosHeader{
+    padding-top:102px;
+    margin-left:310px;
+}
+.ABMcontainer{
+  margin-left:360px;
+  margin-top:43px;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  margin-left:360px;
+  margin-top:10px;
+  padding: 45px;
+  max-width:960px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input[type="text"], .form input[type="email"], .form select, .form input[type="password"], .form input[type="number"], .form input[type="date"] {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form select option{
+    font-family: "Roboto", sans-serif;
+    background: #f2f2f2;
+    border: 0;
+    margin: 0 0 15px;
+}
+
+.form .submitAlta {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #42A5F5;
+  border: 0;
+  padding: 15px;
+  color: #EEEEEE;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.submitAlta:hover {
+  background: #64B5F6;
+  color:white;
+}
+.form .limpiarCampos{
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #26A69A;
+  border: 0;
+  padding: 15px;
+  color: #EEEEEE;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form .limpiarCampos:hover{
+  background: #4DB6AC;
+  color:white;
+}
+#btnExportarPlanilla {
+  margin-left:20px;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #42A5F5;
+  border: 0;
+  padding: 15px;
+  color: #EEEEEE;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+#btnExportarPlanilla:hover {
+  background: #64B5F6;
+  color:white;
+}
+.form .botonera{
+    width:100%;
+    text-align:center;
+}
+.form .botonera .submitAlta, .form .botonera .submitSearch{
+    width:55%;
+}
+.form .botonera .limpiarCampos{
+    width:40%;
+}
+.form .submitBaja {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #EF5350;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #EEEEEE;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.submitBaja:hover {
+  background:#E57373 ;
+  color:white;
+}
+.form .submitSearch{
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #8D6E63 ;
+  border: 0;
+  padding: 15px;
+  color: #EEEEEE;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form .submitSearch:hover{
+  background:#A1887F;
+  color:white;
+}
+.form .submitModificacion {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #78909C;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #EEEEEE;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form .submitModificacion:hover{
+  background: #90A4AE;
+  color:white;
+}
+
+.form .message {
+  margin: 15px 0 0;
+  color: #000000;
+  font-size: 18px;
+}
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #EF3B3A;
+}
+body {
+  background: #EEEEEE; /* fallback for old browsers */
+  background: -webkit-linear-gradient(right, #EEEEEE, #EEEEEE);
+  background: -moz-linear-gradient(right, #EEEEEE, #EEEEEE);
+  background: -o-linear-gradient(right, #EEEEEE, #EEEEEE);
+  background: linear-gradient(to left, #EEEEEE, #EEEEEE);
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+}
+/*Modal box*/
+#divModal{
+    z-index:10;
+}
