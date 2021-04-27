@@ -16,13 +16,13 @@ public class Database {
     /*UTILIZAR ESTAS 3 LINEAS PARA TESTING CON JUNIT*/
      //private static String user = "root";
      //private static String pass = "48283674";
-     //private static String url = "jdbc:mysql://localhost:3306/alfacomPlatform"+"?user="+user+"&password="+pass+"&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+     //private static String url = "jdbc:mysql://localhost:3306/eneplayPlatform"+"?user="+user+"&password="+pass+"&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     /*UTILIZAR ESTAS 3 LINEAS PARA TESTING CON JUNIT*/
     
      /*UTILIZAR ESTAS 3 LINEAS PARA PRODUCCION(QUE SE PUEDA CONSUMIR EL WEBSERVCE)*/
      private static String user = "root";
-     private static String pass = "alfacom48282020!";
-     private static String url = "jdbc:mysql://alfacomplatform.cx3teiukxfae.us-east-1.rds.amazonaws.com:3306/alfacomPlatform"+"?user="+user+"&password="+pass+"&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+     private static String pass = "YbambxtkHz";
+     private static String url = "jdbc:mysql://eneplay.c3qiy0zwamlb.us-east-2.rds.amazonaws.com:3306/eneplayPlatform"+"?user="+user+"&password="+pass+"&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
      /*UTILIZAR ESTAS 3 LINEAS PARA PRODUCCION(QUE SE PUEDA CONSUMIR EL WEBSERVCE)*/
      
     /*Atributos*/
@@ -45,7 +45,7 @@ public class Database {
                 break;
                 case "glassfish":
                     javax.naming.InitialContext ctx = new javax.naming.InitialContext();
-                    javax.sql.DataSource ds = (javax.sql.DataSource) ctx.lookup("jdbc/alfacom");
+                    javax.sql.DataSource ds = (javax.sql.DataSource) ctx.lookup("jdbc/eneplay");
                     conexion = ds.getConnection();
                     break;
 
