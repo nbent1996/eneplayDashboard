@@ -9,8 +9,6 @@ public class Database {
 
     /*Atributos*/
     private static Database instancia;
-    private static Connection conexion;
-    private static Statement stmt;
     private String modo = "glassfish"; /*local para testing local -- glassfish para testear desde capa de presentación*/
     
     /*UTILIZAR ESTAS 3 LINEAS PARA TESTING CON JUNIT*/
@@ -37,22 +35,25 @@ public class Database {
         return instancia;
     }
 
-    public void conectar(String url) throws SQLException, NamingException {
+    public Conexion conectar(String url) throws SQLException, NamingException {
         try {
+            Connection c = null;
+            Statement s = null;
             switch(this.modo){
                 case "local":
-                    conexion = DriverManager.getConnection(url);
+                    c = DriverManager.getConnection(url);
                 break;
                 case "glassfish":
                     javax.naming.InitialContext ctx = new javax.naming.InitialContext();
                     javax.sql.DataSource ds = (javax.sql.DataSource) ctx.lookup("jdbc/eneplay");
-                    conexion = ds.getConnection();
+                    c = ds.getConnection();
                     break;
 
             }
 
-            conexion.setAutoCommit(false);
-            stmt = conexion.createStatement();
+            c.setAutoCommit(false);
+            s = c.createStatement();
+            return new Conexion(s, c);
         } catch (SQLException ex) {
             int codigo = ex.getErrorCode();
             String errorTexto = "Codigo de Error: " + codigo + " // Mensaje: " + ex.getMessage();
@@ -61,115 +62,109 @@ public class Database {
                 throw new SQLException(errorTexto);
             }
         }
+        return null;
     }
-
-    public void desconectar() {
+    public boolean desconectar(Conexion conexion){
         try {
-            if (conexion != null) {
-                conexion.close();
-                conexion=null;
-                stmt=null;
-                
+            if (conexion.getConexion() != null) {
+                conexion.getConexion().close();
+                conexion.setConexion(null);
+                conexion.setStmt(null);
+                return true;
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            return false;
         }
+        return false;
     }
 
     public int actualizar(String sql) throws SQLException, NamingException {
         try {
-            conectar(url);
-            return stmt.executeUpdate(sql);
+            Conexion DTOConexion = conectar(url);
+            int retorno = DTOConexion.getStmt().executeUpdate(sql);
+            desconectar(DTOConexion);
+            return retorno;
         } catch (SQLException ex) {
             throw ex;
-        } finally {
-            if (conexion != null && !conexion.isClosed()) {
-                conexion.close();
-            }
         }
     }
 
     public boolean actualizarMultiple(ArrayList<String> sql, String modoQuery) throws SQLException, NamingException {
-        conectar(url);
+        Conexion DTOConexion = conectar(url);
         String error = "";
         int idGenerado = -1;
-        conexion.setAutoCommit(false);
+        DTOConexion.getConexion().setAutoCommit(false);
         for (int i = 0; i <= sql.size() - 1; i++) {
             String sentencia = sql.get(i);
             try {
                 if (modoQuery.equals("INSERT")) {
                     if (!sentencia.contains("?") && !"".equals(sentencia)) {
-                        PreparedStatement psConId = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);
+                        PreparedStatement psConId = DTOConexion.getConexion().prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);
                         psConId.executeUpdate();
                         ResultSet generatedKeys = psConId.getGeneratedKeys();
                         generatedKeys.next();
                         idGenerado = generatedKeys.getInt(1);
                     } else {
-                        PreparedStatement ps = conexion.prepareStatement(sentencia);
+                        PreparedStatement ps = DTOConexion.getConexion().prepareStatement(sentencia);
                         ps.setInt(1, idGenerado);
                         ps.executeUpdate();
                     }
                 }
                 if (modoQuery.equals("UPDATE") || modoQuery.equals("DELETE")) {
-                    stmt.executeUpdate(sentencia);
+                    DTOConexion.getStmt().executeUpdate(sentencia);
                 }
             } catch (SQLException ex) {
-                conexion.rollback();
-                conectar(url);
+                DTOConexion.getConexion().rollback();
+                //conectar(url);
                 throw ex;
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
                 throw ex;
             }
         }
-        conexion.commit();
-        if (conexion != null && !conexion.isClosed()) {
-            conexion.close();
-        }
+        DTOConexion.getConexion().commit();
         return true;
 
     }
     public int insertarImagen(String sentencia, Imagen img) throws SQLException, Exception{
-        conectar(url);
-        conexion.setAutoCommit(false);
-        PreparedStatement psConId = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);
+        Conexion DTOConexion = conectar(url);
+        DTOConexion.getConexion().setAutoCommit(false);
+        PreparedStatement psConId = DTOConexion.getConexion().prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);
         psConId.setBytes(1, img.getImagen());
         psConId.executeUpdate();
         ResultSet generatedKeys = psConId.getGeneratedKeys();
         generatedKeys.next();
         int idGenerado = generatedKeys.getInt(1);
-        conexion.commit();
-        if (conexion != null && !conexion.isClosed()) {
-            conexion.close();
-        }
+        DTOConexion.getConexion().commit();
         psConId.close();
         return idGenerado;
     }
 
     public boolean actualizarMultiple(ArrayList<String> sql, String modoQuery, String clave) throws SQLException, NamingException {
-        conectar(url);
+        Conexion DTOConexion = conectar(url);
         String error = "";
-        conexion.setAutoCommit(false);
+        DTOConexion.getConexion().setAutoCommit(false);
         for (int i = 0; i <= sql.size() - 1; i++) {
             String sentencia = sql.get(i);
             try {
                 if (modoQuery.equals("INSERT")) {
                     if (!sentencia.contains("?")) {
-                        PreparedStatement psConId = conexion.prepareStatement(sentencia);
+                        PreparedStatement psConId = DTOConexion.getConexion().prepareStatement(sentencia);
                         psConId.executeUpdate();
                     } else {
-                        PreparedStatement ps = conexion.prepareStatement(sentencia);
+                        PreparedStatement ps = DTOConexion.getConexion().prepareStatement(sentencia);
                         ps.setString(1, clave);
                         ps.executeUpdate();
                     }
                 }
                 if (modoQuery.equals("UPDATE") || modoQuery.equals("DELETE")) {
-                    stmt.executeUpdate(sentencia);
+                    DTOConexion.getStmt().executeUpdate(sentencia);
                 }
 
             } catch (SQLException ex) {
-                conexion.rollback();
-                conectar(url);
+                DTOConexion.getConexion().rollback();
+                //conectar(url);
                 throw ex;
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
@@ -177,17 +172,14 @@ public class Database {
             }
 
         }
-        conexion.commit();
-        if (conexion != null && !conexion.isClosed()) {
-            conexion.close();
-        }
+        DTOConexion.getConexion().commit();
         return true;
     }
 
     public ResultSet consultar(String sql) throws Exception, SQLException {
         try {
-            conectar(url);
-            ResultSet rs = stmt.executeQuery(sql);
+            Conexion DTOConexion = conectar(url);
+            ResultSet rs = DTOConexion.getStmt().executeQuery(sql);
             return rs;
         } catch (SQLException ex) {
             throw ex;
@@ -197,9 +189,6 @@ public class Database {
 
     /*Comportamiento*/
  /*Setters y Getters*/
-    public static Connection getConexion() {
-        return conexion;
-    }
 
     public static String getUrl() {
         return url;
